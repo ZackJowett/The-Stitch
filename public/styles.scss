@@ -1,0 +1,326 @@
+// Created by Zack Jowett for 'The Stich on SYN'
+// Following mobile-first design principles
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// CONTENTS
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// 1. Variables
+// 		a. Root
+//		b. Bootstrap
+// 		c. Breakpoints
+// 2. Mixins
+// 3. Root elements
+// 4. Splash Screen & Heading
+// 5. Navigation Bar
+// 		a. Desktop
+//		b. Bootstrap Nav
+// 6. Class Addons
+// 		a. Heading movement
+//
+//
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// VARIABLES
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// VARIABLES
+// -> Root
+// -----------------------------------------------------------------------------
+:root {
+	// Colours
+	--primary-color: #e63c28;
+	--secondary-color: #46e632;
+	--secondary-dark-color: #369929;
+	--tertiary-color: #1cdde6;
+	--tertiary-dark-color: #0b9399;
+
+	--background-light-color: #e5e5e5;
+	--background-dark-color: #333333;
+	--background-highlight-color: #124d99;
+	--background-feature-color: #e67932;
+
+	--anchor-color: lightgreen;
+
+	// Font Sizes
+	--h1-font-size: 2.5rem;
+	--h2-font-size: 1.5rem;
+	--h3-font-size: 1rem;
+	--navbar-link-font-size: 0.75rem;
+
+	// Padding
+	--heading-padding: 0.5rem;
+}
+
+// -----------------------------------------------------------------------------
+// VARIABLES
+// -> Breakpoints
+// -----------------------------------------------------------------------------
+$phone-breakpoint: 600px;
+$tablet-portrait-breakpoint: 600px;
+$tablet-landscape-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$desktop-large-breakpoint: 1200px;
+
+// -----------------------------------------------------------------------------
+// VARIABLES
+// -> Responsive Design
+// -----------------------------------------------------------------------------
+@media (min-width: tablet-portrait-breakpoint) {
+}
+
+@media (min-width: $tablet-landscape-breakpoint) {
+}
+
+@media (min-width: $desktop-breakpoint) {
+	:root {
+		--h1-font-size: 3rem;
+		--h2-font-size: 1.5rem;
+		--h3-font-size: 1rem;
+		--navbar-link-font-size: 1.25rem;
+	}
+}
+
+@media (min-width: $desktop-large-breakpoint) {
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// MIXINS
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// Centering an element
+@mixin center($top: 50%, $left: 50%, $translate: translate(-50%, -50%)) {
+	top: $top;
+	left: $left;
+	transform: $translate;
+}
+
+// Creating a flex element with horizontal & vertical centering
+@mixin flex-center() {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// ROOT ELEMENTS
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+h1 {
+	color: var(--primary-color);
+	font-size: var(--h1-font-size);
+	font-weight: 600;
+	display: flex;
+	margin-bottom: 0;
+}
+
+h2 {
+	color: var(--primary-color);
+	font-size: var(--h2-font-size);
+	margin-bottom: 0;
+}
+
+h3 {
+	font-size: var(--h3-font-size);
+}
+
+a {
+	color: var(--secondary-dark-color);
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// SPLASH SCREEN & HEADING
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+.preheading {
+	@include center($translate: translateX(-50%));
+}
+
+.subheading {
+	position: absolute;
+	@include center($translate: translateX(-50%));
+}
+
+.splash {
+	position: relative;
+	background-color: var(--background-light-color);
+	height: 100vh;
+}
+
+.heading-container {
+	@include center;
+	z-index: 10000;
+	padding: var(--heading-padding);
+}
+
+.scroll-indicator-container {
+	position: absolute;
+	@include center($top: auto, $translate: translateX(-50%));
+	bottom: 5%;
+	text-align: center;
+}
+
+.scroll-indicator-container:hover {
+	cursor: pointer;
+}
+
+.scroll-indicator {
+	color: var(--tertiary-dark-color);
+	margin-bottom: 0.5rem;
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// NAVIGATION BAR
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+.navbar-section {
+	width: 100%;
+
+	// Acommodate heading size + heading padding + navbar buttons (1.5)
+	height: calc(
+		calc(
+				var(--h1-font-size) + var(--h2-font-size) +
+					var(--heading-padding) * 1.5
+			) * 1.5
+	);
+
+	background-color: var(--background-highlight-color);
+	z-index: 1;
+	@include flex-center();
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+	flex-direction: column;
+}
+
+.spacer,
+.navbar-container {
+	height: 100%;
+	width: 100%;
+}
+.spacer {
+	flex: 2;
+}
+
+.navbar-container {
+	flex: 1;
+}
+
+.navbar-element {
+	height: 100%;
+	flex: 1;
+	@include flex-center();
+
+	// Default colour
+	background-color: var(--tertiary-color);
+}
+
+// Feature button
+.navbar-highlight {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.navbar-element:hover {
+	z-index: 1;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+// -----------------------------------------------------------------------------
+// NAVIGATION BAR
+// -> Bootstrap Nav
+// -----------------------------------------------------------------------------
+.navbar {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	@include flex-center();
+}
+
+// Bootstrap navbar anchor text
+.navbar a {
+	font-size: var(--navbar-link-font-size);
+}
+
+// -----------------------------------------------------------------------------
+// NAVIGATION BAR
+// -> Desktop
+// -----------------------------------------------------------------------------
+@media only screen and (min-width: $desktop-breakpoint) {
+	.navbar-section {
+		flex-direction: row;
+		height: calc(
+			var(--h1-font-size) + var(--h2-font-size) +
+				calc(var(--heading-padding) * 2)
+		);
+	}
+
+	.navbar-container {
+		flex: 3;
+	}
+
+	.navbar-element {
+		height: 100%;
+		flex: 1;
+		@include flex-center();
+	}
+
+	// HOVER
+	.navbar-element:hover {
+		transform: scale(1.1);
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	}
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// CLASS ADDONS
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// Makes an element sticky at top of screen
+.sticky {
+	position: sticky;
+	top: 0;
+}
+
+// Placeholders (just whitespace)
+.placeholder-body {
+	height: 50rem;
+}
+
+.placeholder-body2 {
+	height: 50rem;
+	background-color: pink;
+}
+
+// Removes underline from anchor elements
+.no-decoration {
+	text-decoration: none;
+}
+
+// -----------------------------------------------------------------------------
+// CLASS ADDONS
+// -> Heading movement
+// -----------------------------------------------------------------------------
+.side-scroll,
+.vert-scroll {
+	position: fixed;
+}
+
+.span-move-up,
+.span-move-down,
+.move-left,
+.move-left2 {
+	position: relative;
+	display: inline-block;
+}
