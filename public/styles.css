@@ -78,7 +78,7 @@ a {
   top: auto;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 5%;
+  bottom: 20%;
   text-align: center;
 }
 
@@ -91,6 +91,11 @@ a {
   margin-bottom: 0.5rem;
 }
 
+@media (min-width: 992px) {
+  .scroll-indicator-container {
+    bottom: 5%;
+  }
+}
 .navbar-section {
   width: 100%;
   height: calc((var(--h1-font-size) + var(--h2-font-size) + var(--heading-padding) * 1.5) * 1.5);

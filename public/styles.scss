@@ -165,7 +165,7 @@ a {
 .scroll-indicator-container {
 	position: absolute;
 	@include center($top: auto, $translate: translateX(-50%));
-	bottom: 5%;
+	bottom: 20%;
 	text-align: center;
 }
 
@@ -176,6 +176,12 @@ a {
 .scroll-indicator {
 	color: var(--tertiary-dark-color);
 	margin-bottom: 0.5rem;
+}
+
+@media (min-width: $desktop-breakpoint) {
+	.scroll-indicator-container {
+		bottom: 5%;
+	}
 }
 
 // -----------------------------------------------------------------------------
