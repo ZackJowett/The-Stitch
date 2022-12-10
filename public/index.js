@@ -1,10 +1,8 @@
-// Reset Scroll
-window.onbeforeunload = function () {
-	window.scrollTo(0, 0);
-};
-
 $(document).ready(() => {
-	// Side scrolling
+	// Reset scroll
+	window.scrollTo(0, 0);
+
+	// Constants
 	const $sideScroll = $(".side-scroll"); // scroll to left side
 	const $vertScroll = $(".vert-scroll"); // scroll to top
 	const $moveLeft = $(".move-left"); // align to left in container
