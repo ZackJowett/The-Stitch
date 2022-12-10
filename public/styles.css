@@ -22,6 +22,7 @@
     --h2-font-size: 1.5rem;
     --h3-font-size: 1rem;
     --navbar-link-font-size: 1.25rem;
+    --heading-padding: 1rem;
   }
 }
 h1 {
