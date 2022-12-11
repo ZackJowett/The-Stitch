@@ -1,9 +1,10 @@
 const functions = require("firebase-functions");
+const express = require("express");
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+const app = express();
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-	functions.logger.info("Hello logs!", { structuredData: true });
-	response.send("Hello from Firebase!");
+app.get("*", (req, res) => {
+	res.send("<h1>Hello World!</h1>");
 });
+
+exports.app = functions.https.onRequest(app);
