@@ -4,7 +4,8 @@
 	"description": "TESTING A website for The Stitch",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "npm i && npm cd functions && npm i && cd .. && sass public/styles.scss public/styles.css"
 	},
 	"author": "Zack Jowett",
 	"license": "ISC",
