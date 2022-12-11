@@ -31,8 +31,9 @@ $(document).ready(() => {
 		if (viewportHeightRatio < 1) {
 			scrollMovement(viewportHeightRatio);
 			characterWeave(viewportHeightRatio);
-			$fadeOut.css("opacity", 1 - viewportHeightRatio * 2);
-			// .attr("disable");
+
+			// fade "on SYN" link
+			fadeSubheading(viewportHeightRatio);
 		} else {
 			// Reset
 			$sideScroll.css("left", $container.outerWidth() / 2);
@@ -45,6 +46,7 @@ $(document).ready(() => {
 		}
 	}
 
+	// Adjusts position of the brand title container and text when scrolling
 	function scrollMovement(ratio) {
 		let windowWidth = $(window).width();
 		let windowHeight = $(window).height();
@@ -65,12 +67,29 @@ $(document).ready(() => {
 		$moveLeft.css("left", $container.width() / 2 - moveLeftScrollPercent);
 	}
 
+	// Makes individual characters "stitch" up and down with scroll
 	function characterWeave(ratio) {
 		const multiplier = 2;
 
 		// set css classes
 		$up.css("bottom", Math.sin(ratio * Math.PI) * multiplier + "rem");
 		$down.css("top", Math.sin(ratio * Math.PI) * multiplier + "rem");
+	}
+
+	// Fades in/out and disables the brand title subheading with scroll
+	function fadeSubheading(ratio) {
+		$fadeOut.css("opacity", 1 - ratio * 2);
+
+		// When not visible, disabled click events on the link
+		if ($fadeOut.css("opacity") <= 0.01) {
+			if (!$fadeOut.hasClass("disabled-anchor")) {
+				$fadeOut.addClass("disabled-anchor");
+			}
+		} else {
+			if ($fadeOut.hasClass("disabled-anchor")) {
+				$fadeOut.removeClass("disabled-anchor");
+			}
+		}
 	}
 
 	// Zoom scroll
