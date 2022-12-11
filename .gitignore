@@ -67,4 +67,5 @@ node_modules/
 
 
 #ignore .css (generated from .scss)
-.css
+*.css
+*.css.map
